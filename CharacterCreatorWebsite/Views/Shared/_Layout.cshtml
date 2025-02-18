@@ -7,43 +7,81 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CharacterCreatorWebsite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <!-- Vertical Sidebar Navigation -->
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li class="nav-item">
+                <a asp-controller="Home" asp-action="Index">
+                    <i class="fa fa-home"></i> <!-- Homepage Icon -->
+                    <span class="nav-text">Home Page</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="CharacterChart" asp-action="Index">
+                    <i class="fa fa-file"></i> <!-- Character Chart Icon -->
+                    <span class="nav-text">Character Chart</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="CharacterCreation" asp-action="Index">
+                    <i class="fa fa-cube"></i> <!-- 3D Character Creation Icon -->
+                    <span class="nav-text">3D Character Creation</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="ChatForum" asp-action="Index">
+                    <i class="fa fa-comments"></i> <!-- Chat/Forum Icon -->
+                    <span class="nav-text">Chat/Forum</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Profile" asp-action="Index">
+                    <i class="fa fa-user"></i> <!-- Profile Icon -->
+                    <span class="nav-text">Profile</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header Navigation Bar -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CharacterCreatorWebsite</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <h1>Character Creations!</h1>
     </header>
+
+    <!-- Main Content Area -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <h3> Welcome to my Character Creation Website, where you can create your characters either from scratch or from different fandoms. </h3>
+
+    <p> We are not affliated with any character creations of any existing works</p>
+
+    <!-- Footer Section -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - CharacterCreatorWebsite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            $('#sidebar').hover(function () {
+                $(this).addClass('expanded');
+            }, function () {
+                $(this).removeClass('expanded');
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
