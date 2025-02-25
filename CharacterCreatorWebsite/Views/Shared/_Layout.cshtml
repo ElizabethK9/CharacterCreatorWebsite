@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CharacterCreatorWebsite.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="~/wwwroot/js/site.js" defer></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/wwwroot/js/site.js" defer></script>
 </head>
 <body>
     <!-- Vertical Sidebar Navigation -->
@@ -50,6 +51,7 @@
     <!-- Header Navigation Bar -->
     <header>
         <h1>Character Creations!</h1>
+        <button id="theme-toggle" aria-label="Toggle Light/Dark Mode">🌞/🌜</button>
     </header>
 
     <!-- Main Content Area -->
@@ -59,14 +61,8 @@
         </main>
     </div>
 
-    <header>
-        <button id="theme-toggle" aria-label="Toggle Light/Dark Mode">🌞/🌜</button>
-    </header>
-
-
-    <h3> Welcome to my Character Creation Website, where you can create your characters either from scratch or from different fandoms. </h3>
-
-    <p> We are not affliated with any character creations of any existing works</p>
+    <h3>Welcome to my Character Creation Website, where you can create your characters either from scratch or from different fandoms.</h3>
+    
 
     <!-- Footer Section -->
     <footer class="border-top footer text-muted">
