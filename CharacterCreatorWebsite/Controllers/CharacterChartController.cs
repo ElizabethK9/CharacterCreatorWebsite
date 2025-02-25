@@ -6,7 +6,7 @@ namespace CharacterCreatorWebsite.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("CharacterChart");
         }
     }
 }
