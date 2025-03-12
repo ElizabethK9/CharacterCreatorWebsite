@@ -310,3 +310,28 @@ body {
     background-color: var(--sidebar-bg);
 }
 
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.profile-page {
+    margin: 0 auto;
+}
+
+.profile-title {
+    margin-bottom: 20px;
+}
+
+.theme-preferences button {
+    margin-right: 10px;
+}
+
+.character-details p {
+    margin: 0;
+}

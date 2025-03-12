@@ -46,6 +46,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Profile}/{action=Login}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Profile}/{action=Register}/{id?}");
+
+
 app.MapControllers(); // Map API controllers
 
 app.Run();
