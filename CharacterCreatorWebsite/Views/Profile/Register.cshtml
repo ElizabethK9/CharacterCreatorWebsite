@@ -2,29 +2,43 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
+<div class="container mt-5">
+    <h2 class="text-center">@ViewBag.Title</h2>
 
-@if (!string.IsNullOrEmpty(ViewBag.Error))
-{
-    <div class="alert alert-danger">@ViewBag.Error</div>
-}
+    <!-- Display errors if they exist -->
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+    }
 
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required />
-    </div>
+    <form asp-action="Register" method="post" class="mt-4">
+        <!-- Email Input -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required />
+        </div>
 
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Choose a username" required />
-    </div>
+        <!-- Username Input -->
+        <div class="form-group mt-3">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Choose a username" required />
+        </div>
 
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required />
-    </div>
+        <!-- Password Input -->
+        <div class="form-group mt-3">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required />
+        </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+        <!-- Register Button -->
+        <button type="submit" class="btn btn-primary mt-3">Register</button>
+    </form>
+
+    <!-- Already Registered Link -->
+    <p class="text-center mt-3">
+        Already have an account? <a asp-controller="Profile" asp-action="Login">Log in here</a>.
+    </p>
+</div>
+
+
 

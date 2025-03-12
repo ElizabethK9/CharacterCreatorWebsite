@@ -2,42 +2,56 @@
     ViewData["Title"] = "Your Profile";
 }
 
-<div class="profile-page">
+<div class="profile-page container mt-5">
     <!-- Welcome Message at the Top -->
-    <div class="profile-title">
-       @if (Model != null && Model.Username != null)
+    <div class="profile-title text-center">
+        @if (Model != null && !string.IsNullOrEmpty(Model.Username))
         {
-            <h1>Welcome @Model.Username to your profile</h1>
+            <h1>Welcome, @Model.Username, to your profile</h1>
         }
         else
         {
             <h1>Welcome to your profile</h1>
         }
-        </div>
+    </div>
 
     <!-- Main Content Container -->
-    <div class="profile-layout">
+    <div class="row mt-4">
         <!-- Profile Settings Section -->
-        <div class="profile-settings">
+        <div class="col-md-6 profile-settings">
             <h3>Profile Settings</h3>
             <div class="theme-preferences">
                 <h4>Theme Preferences</h4>
-                <button id="light-mode" class="btn btn-outline-primary">Light Mode</button>
-                <button id="dark-mode" class="btn btn-outline-secondary">Dark Mode</button>
+                <!-- Buttons with fallback text if functionality is not implemented -->
+                <button id="light-mode" class="btn btn-outline-primary" disabled>Light Mode (Coming Soon)</button>
+                <button id="dark-mode" class="btn btn-outline-secondary" disabled>Dark Mode (Coming Soon)</button>
             </div>
         </div>
 
         <!-- Recent Character Box -->
-        <div class="recent-character">
+        <div class="col-md-6 recent-character">
             <h3>Most Recent Character</h3>
-            <div class="character-details">
-                <p><strong>Name:</strong> @Model.MostRecentCharacter.Name</p>
-                <p><strong>Created On:</strong> @Model.MostRecentCharacter.CreatedOn.ToString("MMMM dd, yyyy")</p>
-                <p><strong>Description:</strong> @Model.MostRecentCharacter.Description</p>
-            </div>
-            <button onclick="location.href='@Url.Action("AllCharacters", "Profile")'" class="btn btn-outline-primary">
+            @if (Model != null && Model.MostRecentCharacter != null)
+            {
+                <div class="character-details">
+                    <p><strong>Name:</strong> @Model.MostRecentCharacter.Name</p>
+                    <p><strong>Created On:</strong> @Model.MostRecentCharacter.CreatedOn.ToString("MMMM dd, yyyy")</p>
+                    <p><strong>Description:</strong> @Model.MostRecentCharacter.Description</p>
+                </div>
+            }
+            else
+            {
+                <p>No recent characters to display.</p>
+            }
+
+            <!-- Accessible button for navigating to all characters -->
+            <button onclick="location.href='@Url.Action("AllCharacters", "Profile")'"
+                    class="btn btn-outline-primary mt-3"
+                    aria-label="View all characters">
                 View All Characters
             </button>
         </div>
     </div>
 </div>
+
+
