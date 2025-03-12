@@ -1,14 +1,44 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('#sidebar').hover(function() {
-      $(this).addClass('expanded');
-    }, function() {
-      $(this).removeClass('expanded');
+﻿// jQuery for sidebar hover effect
+$(document).ready(function () {
+    $('#sidebar').hover(function () {
+        $(this).addClass('expanded');
+    }, function () {
+        $(this).removeClass('expanded');
     });
-  });
-</script>
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const root = document.documentElement;
+
+    // Get Light and Dark Mode buttons
+    const lightModeButton = document.getElementById("light-mode");
+    const darkModeButton = document.getElementById("dark-mode");
+
+    // Check and apply stored theme preference
+    const storedTheme = localStorage.getItem("theme") || "light";
+    root.setAttribute("data-theme", storedTheme);
+
+    // Disable the current theme's button
+    const updateButtonStates = () => {
+        lightModeButton.disabled = root.getAttribute("data-theme") === "light";
+        darkModeButton.disabled = root.getAttribute("data-theme") === "dark";
+    };
+
+    updateButtonStates(); // Set initial button states
+
+    // Event listener for Light Mode button
+    lightModeButton?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        updateButtonStates();
+    });
+
+    // Event listener for Dark Mode button
+    darkModeButton?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        updateButtonStates();
+    });
+});
+
+

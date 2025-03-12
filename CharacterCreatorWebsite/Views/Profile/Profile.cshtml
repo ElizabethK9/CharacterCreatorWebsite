@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Your Profile";
+}
+
+<div class="profile-page">
+    <!-- Welcome Message at the Top -->
+    <div class="profile-title">
+       @if (Model != null && Model.Username != null)
+        {
+            <h1>Welcome @Model.Username to your profile</h1>
+        }
+        else
+        {
+            <h1>Welcome to your profile</h1>
+        }
+        </div>
+
+    <!-- Main Content Container -->
+    <div class="profile-layout">
+        <!-- Profile Settings Section -->
+        <div class="profile-settings">
+            <h3>Profile Settings</h3>
+            <div class="theme-preferences">
+                <h4>Theme Preferences</h4>
+                <button id="light-mode" class="btn btn-outline-primary">Light Mode</button>
+                <button id="dark-mode" class="btn btn-outline-secondary">Dark Mode</button>
+            </div>
+        </div>
+
+        <!-- Recent Character Box -->
+        <div class="recent-character">
+            <h3>Most Recent Character</h3>
+            <div class="character-details">
+                <p><strong>Name:</strong> @Model.MostRecentCharacter.Name</p>
+                <p><strong>Created On:</strong> @Model.MostRecentCharacter.CreatedOn.ToString("MMMM dd, yyyy")</p>
+                <p><strong>Description:</strong> @Model.MostRecentCharacter.Description</p>
+            </div>
+            <button onclick="location.href='@Url.Action("AllCharacters", "Profile")'" class="btn btn-outline-primary">
+                View All Characters
+            </button>
+        </div>
+    </div>
+</div>

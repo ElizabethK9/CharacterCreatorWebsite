@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CharacterCreatorWebsite.Models; // Ensure this namespace is correct
+using CharacterCreatorWebsite.Models; 
 
 namespace CharacterCreatorWebsite.Data
 {
@@ -10,19 +10,39 @@ namespace CharacterCreatorWebsite.Data
         {
         }
 
-        public DbSet<CharacterCreationClass> Characters { get; set; }
+        // DbSet for Profiles table
+        public DbSet<ProfileClass> Profiles { get; set; }
 
-        // Override the OnModelCreating method to configure model properties
+        // DbSet for Characters table
+        public DbSet<CharacterClass> Characters { get; set; } // Added CharacterClass
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CharacterCreationClass>(entity =>
+            // Configure the Characters entity
+            modelBuilder.Entity<CharacterClass>(entity =>
             {
-                entity.Property(e => e.Income).HasColumnType("decimal(18,2)");
+                entity.HasOne(c => c.Profile) // Relationship with ProfileClass
+                      .WithMany(p => p.Characters)
+                      .HasForeignKey(c => c.ProfileClassId)
+                      .OnDelete(DeleteBehavior.Cascade); // Ensure cascading delete
+
+                entity.Property(e => e.Name).IsRequired(); // Ensure Name is required
+                entity.Property(e => e.Description); // Optional description
+                entity.Property(e => e.CreatedOn).HasDefaultValueSql("GETDATE()"); // Default timestamp
+            });
+
+            // Optional: Configure the Profiles entity
+            modelBuilder.Entity<ProfileClass>(entity =>
+            {
+                entity.Property(p => p.Username).IsRequired().HasMaxLength(50);
+                entity.Property(p => p.Password).IsRequired();
             });
         }
     }
 }
+
+
 
 

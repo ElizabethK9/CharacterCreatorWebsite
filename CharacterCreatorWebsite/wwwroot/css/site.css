@@ -1,8 +1,29 @@
+:root {
+    --bg-color: #ffffff; /* Light mode background */
+    --text-color: #000000; /* Light mode text */
+    --sidebar-bg: #f8f9fa; /* Light mode sidebar background */
+    --accent-color: #17a2b8; /* Light mode accent */
+}
+
+[data-theme="dark"] {
+    --bg-color: #343a40; /* Dark mode background */
+    --text-color: #ffffff; /* Dark mode text */
+    --sidebar-bg: #343a40; /* Dark mode sidebar background */
+    --accent-color: #00bfff; /* Dark mode accent */
+}
+
 html {
     font-size: 14px;
     position: relative;
     min-height: 100%;
-    height: 100%; /* Ensure the HTML element takes up at least the full height of the page */
+    height: 100%;
+    width: 100%;
+}
+
+@media (min-width: 480px) {
+    html {
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -11,112 +32,281 @@ html {
     }
 }
 
+@media (min-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+}
+
 /* Ensure focused elements have a blue outline */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--accent-color);
 }
 
 header h1 {
     font-style: italic;
-    font-size: 75px;
+    font-size: 3.5rem;
     text-align: center;
+}
+
+@media (max-width: 767px) {
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+h3 {
+    font-size: 2rem;
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    word-wrap: break-word;
+    line-height: 1.6;
+    flex: 1;
+}
+
+@media (max-width: 1024px) {
+    h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h3 {
+        font-size: 1.4rem;
+    }
 }
 
 /* Add bottom margin to the body to prevent footer overlap */
 body {
-    margin-bottom: 60px;
-    height: 100%; /* Ensure the body element takes up the full height */
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    flex-direction: column; /* Stack the content vertically */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh; /* Ensure it covers the full viewport height */
 }
 
 /* Sidebar styling */
 #sidebar {
-    height: 100%; /* Full height of the screen */
-    width: 60px; /* Collapsed width */
+    height: 100%;
+    width: 60px;
     position: fixed;
     left: 0;
-    top: 0; /* Ensure it starts at the top */
-    background-color: #343a40;
-    transition: width 0.3s;
-    z-index: 1000; /* Ensure the sidebar is above other content */
+    top: 0;
+    background-color: var(--sidebar-bg);
+    transition: width 0.3s, left 0.3s;
+    z-index: 1000;
 }
 
     #sidebar:hover {
-        width: 250px; /* Expanded width */
+        width: 250px;
     }
 
-    /* Remove default padding and margin for the list */
     #sidebar .components {
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
-    /* Style each navigation item */
     #sidebar .nav-item {
         display: flex;
         align-items: center;
-        padding: 20px; /* Increase padding for better spacing */
+        padding: 20px;
     }
 
-        /* Style the navigation links */
         #sidebar .nav-item a {
             display: flex;
             align-items: center;
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
             width: 100%;
         }
 
-            /* Add margin to the icons */
             #sidebar .nav-item a .fa {
                 margin-right: 10px;
-                font-size: 18px; /* Adjust icon size if needed */
+                font-size: 18px;
+                color: var(--accent-color);
             }
 
-            /* Custom colors for specific icons */
-            #sidebar .nav-item a .fa-home {
-                color: #ffcc00; /* Custom color for Home icon */
-            }
-
-            #sidebar .nav-item a .fa-file {
-                color: #00ccff; /* Custom color for Character Chart icon */
-            }
-
-            /* Hide the text by default */
             #sidebar .nav-item a .nav-text {
                 display: none;
             }
 
-    /* Display the text when the sidebar is hovered */
     #sidebar:hover .nav-item a .nav-text {
         display: inline;
     }
 
-    /* Specific colors for other icons */
-    #sidebar .nav-item a .fa-cube {
-        color: #ffcc00; /* Example color for 3D Character Creation */
+/* Adjust sidebar and main content layout */
+@media (max-width: 767px) {
+    #sidebar {
+        width: 60px; /* Ensure sidebar remains visible */
+        left: 0;
     }
 
-    #sidebar .nav-item a .fa-comments {
-        color: #00ccff; /* Example color for Chat/Forum */
+    .container {
+        margin-left: 60px; /* Adjust content margin when sidebar is collapsed */
     }
 
-    #sidebar .nav-item a .fa-user {
-        color: #cc00ff; /* Example color for Profile */
+    #sidebar:hover + .container {
+        margin-left: 250px; /* Adjust content margin when sidebar is expanded */
     }
-
-/* Add this to your CSS file */
-h3 {
-    font-size: 50px;
-    padding-top: 100px;
-    width: 50%; /* Set a width that suits your design */
-    margin: 0 auto; /* Center the element horizontally */
-    text-align: justify; /* Justify the text to fill the line width */
-    word-wrap: break-word; /* Enable word wrapping */
-    line-height: 1.6; /* Adjust line height for better readability */
-    flex: 1; /* Ensure the h3 element grows to fill the available space */
 }
+
+@media (max-width: 767px) {
+    body {
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    h3 {
+        width: 100%;
+        font-size: 24px;
+        padding-top: 20px;
+    }
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--sidebar-bg);
+    color: var(--text-color);
+    position: absolute;
+    bottom: 0;
+}
+
+/* Buttons*/
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: 50px; /* Add spacing from the right edge */
+}
+
+    .auth-buttons .btn {
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }
+
+    .auth-buttons .btn-primary {
+        background-color: #007bff; /* Blue for Login */
+    }
+
+    .auth-buttons .btn-secondary {
+        background-color: #6c757d; /* Gray for Register */
+    }
+
+    .auth-buttons .btn:hover {
+        opacity: 0.8; /* Subtle hover effect */
+    }
+
+/* Main Profile Page Layout */
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    min-height: 100vh;
+    background-color: var(--bg-color); /* Ensures theme background applies */
+    color: var(--text-color);
+}
+
+/* Title Styling */
+.profile-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Profile Layout - Settings on the Left */
+.profile-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Profile Settings Box */
+.profile-settings {
+    
+    flex: 0 0 600px; /* Fixed width for the box */
+    background-color: var(--sidebar-bg); /* Matches the current theme */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Preferences Styling */
+.theme-preferences h4 {
+    margin-bottom: 10px;
+}
+
+.theme-preferences button {
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Theme Button Colors */
+.theme-preferences .btn-outline-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.theme-preferences .btn-outline-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Ensure Settings Doesn't Interfere with Navigation */
+@media (min-width: 1024px) {
+    .profile-layout {
+        margin-left: 60px; /* Add a margin equal to the navigation width */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column;
+    }
+
+    .profile-settings {
+        width: 100%; /* Take up full width on smaller screens */
+    }
+
+    .profile-title {
+        font-size: 2rem;
+    }
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+.profile-settings {
+    background-color: var(--sidebar-bg);
+}
+
