@@ -4,6 +4,7 @@ using CharacterCreatorWebsite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharacterCreatorWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250312225032_UpdateCharacterChartSchema")]
+    partial class UpdateCharacterChartSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,66 +135,6 @@ namespace CharacterCreatorWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CharacterCharts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Age = 0,
-                            Alignment = "Neutral",
-                            Appearance = "Unknown",
-                            BloodStatus = "Unknown",
-                            CurrentResidence = "Unknown",
-                            DateOfBirth = "Unknown",
-                            FullName = "Template Character 1",
-                            Gender = "Unknown",
-                            HogwartsHouse = "Unknown",
-                            ImportantFamily = "None",
-                            LordLadyShips = "None",
-                            MagicAbilities = "None",
-                            MagicCore = "Unknown",
-                            MagicLegacy = "None",
-                            MagicalInheritance = "None",
-                            Miscellaneous = "None",
-                            Nicknames = "Nickname 1",
-                            Parents = "None",
-                            Patronus = "Unknown",
-                            PlaceOfBirth = "Unknown",
-                            Siblings = "None",
-                            SpecialItems = "None",
-                            Species = "Unknown",
-                            Style = "Unknown",
-                            Wand = "Unknown"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Age = 0,
-                            Alignment = "Neutral",
-                            Appearance = "Unknown",
-                            BloodStatus = "Unknown",
-                            CurrentResidence = "Unknown",
-                            DateOfBirth = "Unknown",
-                            FullName = "Template Character 2",
-                            Gender = "Unknown",
-                            HogwartsHouse = "Unknown",
-                            ImportantFamily = "None",
-                            LordLadyShips = "None",
-                            MagicAbilities = "None",
-                            MagicCore = "Unknown",
-                            MagicLegacy = "None",
-                            MagicalInheritance = "None",
-                            Miscellaneous = "None",
-                            Nicknames = "Nickname 2",
-                            Parents = "None",
-                            Patronus = "Unknown",
-                            PlaceOfBirth = "Unknown",
-                            Siblings = "None",
-                            SpecialItems = "None",
-                            Species = "Unknown",
-                            Style = "Unknown",
-                            Wand = "Unknown"
-                        });
                 });
 
             modelBuilder.Entity("CharacterCreatorWebsite.Models.CharacterClass", b =>

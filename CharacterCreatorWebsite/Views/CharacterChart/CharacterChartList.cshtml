@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CharacterCreatorWebsite.Models.CharacterChartClass>
+
+<h2 class="text-center">Character Charts</h2>
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+<div class="character-chart-container">
+    @foreach (var chart in Model)
+    {
+        <div class="character-chart-template">
+            <h3>@chart.FullName</h3>
+            <p><strong>Nicknames:</strong> @chart.Nicknames</p>
+            <p><strong>Gender:</strong> @chart.Gender</p>
+            <p><strong>Species:</strong> @chart.Species</p>
+            <a href="/CharacterChart/Edit/@chart.Id" class="btn btn-primary btn-sm">Edit Character</a>
+        </div>
+    }
+</div>
+
+
