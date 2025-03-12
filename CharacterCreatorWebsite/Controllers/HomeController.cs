@@ -15,8 +15,12 @@ namespace CharacterCreatorWebsite.Controllers
 
         public IActionResult Index()
         {
+            ViewData["IsHomePage"] = true;
             return View();
         }
+
+       
+
 
         public IActionResult Privacy()
         {

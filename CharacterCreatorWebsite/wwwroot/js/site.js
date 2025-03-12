@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// jQuery for sidebar hover effect
+﻿// jQuery for sidebar hover effect
 $(document).ready(function () {
     $('#sidebar').hover(function () {
         $(this).addClass('expanded');
@@ -10,16 +7,38 @@ $(document).ready(function () {
     });
 });
 
-// JavaScript for theme toggle
-const toggleButton = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme') || 'light';
+document.addEventListener("DOMContentLoaded", function () {
+    const root = document.documentElement;
 
-document.documentElement.setAttribute('data-theme', currentTheme);
+    // Get Light and Dark Mode buttons
+    const lightModeButton = document.getElementById("light-mode");
+    const darkModeButton = document.getElementById("dark-mode");
 
-toggleButton.addEventListener('click', () => {
-    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    // Check and apply stored theme preference
+    const storedTheme = localStorage.getItem("theme") || "light";
+    root.setAttribute("data-theme", storedTheme);
+
+    // Disable the current theme's button
+    const updateButtonStates = () => {
+        lightModeButton.disabled = root.getAttribute("data-theme") === "light";
+        darkModeButton.disabled = root.getAttribute("data-theme") === "dark";
+    };
+
+    updateButtonStates(); // Set initial button states
+
+    // Event listener for Light Mode button
+    lightModeButton?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        updateButtonStates();
+    });
+
+    // Event listener for Dark Mode button
+    darkModeButton?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        updateButtonStates();
+    });
 });
 
 

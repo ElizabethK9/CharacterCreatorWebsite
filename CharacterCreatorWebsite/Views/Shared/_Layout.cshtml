@@ -49,9 +49,15 @@
     </nav>
 
     <!-- Header Navigation Bar -->
-    <header>
-        <h1>Character Creations!</h1>
-        <button id="theme-toggle" aria-label="Toggle Light/Dark Mode">🌞/🌜</button>
+    <header class="d-flex justify-content-between align-items-center">
+        @if (ViewData["IsHomePage"] != null && (bool)ViewData["IsHomePage"])
+        {
+            <h1>Character Creations!</h1>
+            <div class="auth-buttons">
+                <a class="btn btn-primary" asp-controller="Profile" asp-action="Login">Login</a>
+                <a class="btn btn-secondary" asp-controller="Profile" asp-action="Register">Register</a>
+            </div>
+        }
     </header>
 
     <!-- Main Content Area -->
@@ -61,8 +67,11 @@
         </main>
     </div>
 
-    <h3>Welcome to my Character Creation Website, where you can create your characters either from scratch or from different fandoms.</h3>
-    
+    @if (ViewData["IsHomePage"] != null && (bool)ViewData["IsHomePage"])
+    {
+        <h3>Welcome to my Character Creation Website, where you can create your characters either from scratch or from different fandoms.</h3>
+    }
+
 
     <!-- Footer Section -->
     <footer class="border-top footer text-muted">
